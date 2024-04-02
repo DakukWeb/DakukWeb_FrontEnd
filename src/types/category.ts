@@ -9,14 +9,11 @@
 
 export interface Category {
     id:          number;
-    category_id: string;
+    category_id?: string;
     name:        string;
-    created_at:  TedAt;
-    updated_at:  TedAt;
-    deleted_at:  TedAt;
-}
-
-export interface TedAt {
+    created_at:  Date;
+    updated_at:  Date;
+    deleted_at?:  Date;
 }
 
 // Converts JSON strings to/from your types
@@ -186,12 +183,10 @@ function r(name: string) {
 const typeMap: any = {
     "Category": o([
         { json: "id", js: "id", typ: 0 },
-        { json: "category_id", js: "category_id", typ: "" },
+        { json: "category_id", js: "category_id", typ: u(undefined, "") },
         { json: "name", js: "name", typ: "" },
-        { json: "created_at", js: "created_at", typ: r("TedAt") },
-        { json: "updated_at", js: "updated_at", typ: r("TedAt") },
-        { json: "deleted_at", js: "deleted_at", typ: r("TedAt") },
-    ], false),
-    "TedAt": o([
+        { json: "created_at", js: "created_at", typ: Date },
+        { json: "updated_at", js: "updated_at", typ: Date },
+        { json: "deleted_at", js: "deleted_at", typ: u(undefined, Date) },
     ], false),
 };

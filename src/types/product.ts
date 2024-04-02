@@ -14,12 +14,9 @@ export interface Product {
     price:       number;
     stock:       number;
     image:       string;
-    created_at:  TedAt;
-    updated_at:  TedAt;
-    deleted_at:  TedAt;
-}
-
-export interface TedAt {
+    created_at:  Date;
+    updated_at:  Date;
+    deleted_at?:  Date;
 }
 
 // Converts JSON strings to/from your types
@@ -194,10 +191,8 @@ const typeMap: any = {
         { json: "price", js: "price", typ: 3.14 },
         { json: "stock", js: "stock", typ: 0 },
         { json: "image", js: "image", typ: "" },
-        { json: "created_at", js: "created_at", typ: r("TedAt") },
-        { json: "updated_at", js: "updated_at", typ: r("TedAt") },
-        { json: "deleted_at", js: "deleted_at", typ: r("TedAt") },
-    ], false),
-    "TedAt": o([
+        { json: "created_at", js: "created_at", typ: Date },
+        { json: "updated_at", js: "updated_at", typ: Date },
+        { json: "deleted_at", js: "deleted_at", typ: u(undefined, Date) },
     ], false),
 };
